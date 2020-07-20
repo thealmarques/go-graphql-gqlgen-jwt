@@ -5,7 +5,7 @@ This project serves as a template on how is it possible to integrate a JWT token
 
 ## Architecture
 
-<img src="resources/architecture.png" width="30%" height="20%">
+<img src="resources/architecture.png" width="70%" height="50%">
 
 ## Usage
 
