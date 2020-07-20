@@ -1,4 +1,4 @@
-package services
+package injection
 
 import (
 	"database/sql"

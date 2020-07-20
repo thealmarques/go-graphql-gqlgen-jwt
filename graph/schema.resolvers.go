@@ -21,33 +21,17 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) 
 		UpdatedAt: now,
 	}
 
-	result, err := services.DB.Exec("INSERT INTO `users` (name, email, password, created_at, updated_at) VALUES (?, ?, ?, ?, ?)",
-		user.Name, user.Email, user.Password, user.CreatedAt, user.UpdatedAt)
+	err := services.CreateUser(user)
 
 	if err != nil {
 		return nil, err
 	}
 
-	lastID, err := result.LastInsertId()
-
-	if err != nil {
-		return nil, err
-	}
-
-	user.ID = lastID
 	return user, nil
 }
 
 func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
-	var users []*model.User
-	user1 := &model.User{
-		CreatedAt: 111,
-		Name:      "Andre",
-		Email:     "andre@gmail.com",
-		ID:        1,
-	}
-	users = append(users, user1)
-	return users, nil
+	return services.FindUsers()
 }
 
 func (r *userResolver) ID(ctx context.Context, obj *model.User) (int, error) {

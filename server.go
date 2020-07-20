@@ -3,7 +3,7 @@ package main
 import (
 	"go-graphql-jwt/graph"
 	"go-graphql-jwt/graph/generated"
-	"go-graphql-jwt/graph/services"
+	"go-graphql-jwt/graph/injection"
 	"log"
 	"net/http"
 	"os"
@@ -16,7 +16,7 @@ const defaultPort = "8080"
 
 func main() {
 	// open DB connection
-	services.CreateDatabase()
+	injection.CreateDatabase()
 
 	port := os.Getenv("PORT")
 	if port == "" {
