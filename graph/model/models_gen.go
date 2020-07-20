@@ -7,3 +7,8 @@ type NewUser struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
+
+type Token struct {
+	Token     string `json:"token"`
+	ExpiredAt int    `json:"expired_at"`
+}

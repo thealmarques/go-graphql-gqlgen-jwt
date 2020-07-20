@@ -53,3 +53,18 @@ func FindUsers() ([]*model.User, error) {
 
 	return users, nil
 }
+
+// FindUserByEmail - get user given an email
+func FindUserByEmail(email string) (*model.User, error) {
+	db := injection.DB
+	row := db.QueryRow("SELECT id, name, email, password, created_at, updated_at FROM users WHERE email = ?", email)
+	var user model.User
+
+	err := row.Scan(&user.ID, &user.Name, &user.Email, &user.Password, &user.CreatedAt, &user.UpdatedAt)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &user, nil
+}

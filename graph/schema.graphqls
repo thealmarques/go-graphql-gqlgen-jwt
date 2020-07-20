@@ -16,6 +16,12 @@ type Query{
   users: [User]!
 }
 
+type Token{
+  token: String!
+  expired_at: Int!
+}
+
 type Mutation{
   createUser(input: NewUser!): User!
+  login(email: String!, password: String!): Token!
 }
